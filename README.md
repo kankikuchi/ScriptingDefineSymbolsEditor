@@ -2,7 +2,7 @@ UnityのScripting Define Symbolsを使いやすくするエディタ拡張。
 
 <br />
 使用例(YouTube)<br />
-[![](http://img.youtube.com/vi/D8-foGPwn8Q/0.jpg)](https://www.youtube.com/watch?v=D8-foGPwn8Q)
+[![](http://img.youtube.com/vi/PKWK7rxI9ds/0.jpg)](https://www.youtube.com/watch?v=PKWK7rxI9ds)
 <br /><br /><br />
 
 これを使うと以下のよう事が可能になります。
