@@ -219,16 +219,26 @@ public static class SymbolEditor {
 	/// <summary>
 	/// 全プラットフォームに同じシンボルを保存
 	/// </summary>
-	public static void SaveAll(){
+    public static void SaveAll(){
 
-		//Symbolに対応した値をまとめたDefineValueを作成するかのフラグ
-		bool needToCreateDefineValue = true;
+        //Symbolに対応した値をまとめたDefineValueを作成するかのフラグ
+        bool needToCreateDefineValue = true;
 
-		foreach (BuildTargetGroup buildTarget in Enum.GetValues(typeof(BuildTargetGroup))) {
-			Save (buildTarget, needToCreateDefineValue);
+        foreach (BuildTargetGroup buildTarget in Enum.GetValues(typeof(BuildTargetGroup))){
 
-			//一度書き出したら、DefineValueを再度書き出さないように
-			needToCreateDefineValue = false;
-		}
-	}
+            if (!IsObsolete(buildTarget)){
+                Save(buildTarget, needToCreateDefineValue);
+
+                //一度書き出したら、DefineValueを再度書き出さないように
+                needToCreateDefineValue = false;
+            }
+        }
+    }
+
+    public static bool IsObsolete(Enum value){
+        var fi = value.GetType().GetField(value.ToString());
+        var attributes = (ObsoleteAttribute[])
+            fi.GetCustomAttributes(typeof(ObsoleteAttribute), false);
+        return (attributes != null && attributes.Length > 0);
+    }
 }
